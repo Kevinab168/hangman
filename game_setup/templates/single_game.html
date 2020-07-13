@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Game {{ game.pk }}</h1>
+<form action="">
+    <input type="text" data-test="user-guess" name="user-guess">
+    <input type="submit" data-test="submit-guess" value="Make Guess">
+</form>
+{% endblock content %}

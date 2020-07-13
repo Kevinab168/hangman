@@ -6,6 +6,15 @@
     <title>Hang Man</title>
 </head>
 <body>
+    <nav>
+        <div class="nav-wrapper">
+          <ul>
+            {% if user.is_authenticated %}
+            <li>{{ user.username }}</li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>    
     {% block content %}
     {% endblock content %}
 </body>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Play Games!</h1>
+<form action="{% url 'play_game' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" data-test="play-game" value="Play Game">
+</form>
+{% endblock content %}
