@@ -1,0 +1,1 @@
+![][(https://github.com/Kevinab168/hangman/workflows/tests/badge.svg)](https://github.com/Kevinab168/hangman/actions?query=workflow%3Atests)
