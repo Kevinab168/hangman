@@ -2,7 +2,14 @@
 
 {% block content %}
 <h1>Game {{ game.pk }}</h1>
-<form action="">
+<ul>
+    {% for guess in guesses %}
+    <li data-test="wrong-guess">{{ guess.guess_value }}</li>
+    {% endfor %}
+</ul>
+
+<form action="{% url 'single_game' game.pk %}" method="POST">
+    {% csrf_token %}
     <input type="text" data-test="user-guess" name="user-guess">
     <input type="submit" data-test="submit-guess" value="Make Guess">
 </form>
