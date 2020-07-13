@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from game_setup.models import Game
+from game_setup.models import Game, Guess
 
 
 def homepage(request):
@@ -30,5 +30,15 @@ def play_game(request):
 
 def game(request, game_id):
     current_game = Game.objects.all().get(pk=game_id)
-    context = {'game': current_game}
+    if request.method == 'POST':
+        guess_value = request.POST['user-guess']
+        new_guess = Guess.objects.create(guess_value=guess_value, game=current_game)
+        if new_guess.guess_value not in current_game.winning_word:
+            current_game.attempts_left -= 1
+            current_game.save()
+    all_guesses = Guess.objects.filter(game=current_game)
+    context = {
+        'game': current_game,
+        'guesses': all_guesses
+        }
     return render(request, 'single_game.html', context)

@@ -41,7 +41,7 @@ def log_in(driver, live_server):
 
 
 @pytest.fixture
-def make_guess():
+def make_guess(driver, live_server):
     def action(guess_value):
         guess_input = driver.find_element_by_css_selector('[data-test="user-guess"]')
         guess_input.send_keys(guess_value)

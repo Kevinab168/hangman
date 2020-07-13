@@ -35,8 +35,9 @@ def test_make_guess(driver, live_server, user, log_in, make_guess):
     driver.get(live_server.url + f'/game/{new_game.pk}')
     make_guess('r')
     latest_guess = Guess.objects.all().last()
-    assert latest_guess in new_game.guesses
-    assert new_game.guesses_left == 5
-    assert new_game.in_progress is True
+    recent_game = Game.objects.all().last()
+    assert latest_guess.game == recent_game
+    assert recent_game.attempts_left == 5
+    assert recent_game.in_progress is True
     wrong_guesses = driver.find_element_by_css_selector('[data-test="wrong-guess"]')
     assert 'r' in wrong_guesses.text
