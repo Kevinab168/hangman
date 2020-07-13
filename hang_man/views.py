@@ -41,8 +41,4 @@ def game(request, game_id):
         'game': current_game,
         'guesses': all_guesses
         }
-<<<<<<< HEAD
     return render(request, 'single_game.html', context)
-=======
-    return render(request, 'single_game.html', context)
->>>>>>> 5c2a1bd7cf363b18797e90601f4019d95faa829d
